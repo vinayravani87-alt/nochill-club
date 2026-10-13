@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#fff8ec" />
+  <meta name="description" content="Afterclass — memes, gupshup, video calls and tiny games with your people." />
+  <title>Afterclass Club — your online hangout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#/home" aria-label="Afterclass home">
+        <span class="brand-mark"><span>✳</span></span>
+        <span class="brand-copy"><b>afterclass</b><small>THE UNOFFICIAL CLUB</small></span>
+      </a>
+
+      <div class="side-label">YOUR CAMPUS <span>✷</span></div>
+      <nav class="primary-nav">
+        <a href="#/home" data-route="home" class="nav-item"><span class="nav-icon">⌂</span><span>Common room</span><kbd>01</kbd></a>
+        <a href="#/memes" data-route="memes" class="nav-item"><span class="nav-icon">▧</span><span>Meme lab</span><i class="nav-dot coral"></i></a>
+        <a href="#/chat" data-route="chat" class="nav-item"><span class="nav-icon">◉</span><span>Back-bench chat</span><i class="nav-dot aqua"></i></a>
+        <a href="#/calls" data-route="calls" class="nav-item"><span class="nav-icon">▣</span><span>Video adda</span><span class="live-pip"><i></i> LIVE</span></a>
+        <a href="#/arcade" data-route="arcade" class="nav-item"><span class="nav-icon">✹</span><span>Game period</span><kbd>05</kbd></a>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+      <div class="side-label">OPEN ROOMS <button class="tiny-plus" id="new-room-btn" aria-label="Create a room">+</button></div>
+      <div class="room-list" id="room-shortcuts">
+        <button class="room-shortcut" data-room="12-B"><span class="room-emoji yellow">☻</span><span><b>12-B homies</b><small>4 hanging out</small></span><i class="online-dot"></i></button>
+        <button class="room-shortcut" data-room="meme-club"><span class="room-emoji pink">✿</span><span><b>meme club</b><small>no context pls</small></span></button>
+        <button class="room-shortcut" data-room="late-night"><span class="room-emoji purple">☾</span><span><b>late night</b><small>low battery gang</small></span></button>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="little-note"><span class="note-pin">✦</span><b>Reminder from the board</b><p>Life is not a race. Paani pee lo. 💧</p><span class="note-line">— future you</span></div>
+        <button class="profile-button" id="profile-button">
+          <span class="avatar avatar-coral" id="profile-avatar">V</span>
+          <span class="profile-text"><b id="profile-name">Vinay</b><small><i class="online-dot"></i> here for the vibes</small></span>
+          <span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark"><span>✳</span></span><b>afterclass</b></div>
+        <div class="breadcrumbs"><span>afterclass club</span><span class="crumb-slash">/</span><b id="breadcrumb-current">common room</b></div>
+        <div class="topbar-actions">
+          <div class="connection-pill" id="connection-pill"><i class="online-dot"></i><span>connecting…</span></div>
+          <button class="icon-button help-button" id="help-button" aria-label="Help and about" title="About this space">?</button>
+          <button class="top-avatar" id="top-avatar" aria-label="Edit your profile">V</button>
+        </div>
+      </header>
+
+      <section id="view" class="view" aria-live="polite"></section>
+
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a href="#/home" data-route="home" aria-label="Common room"><span>⌂</span><small>Home</small></a>
+        <a href="#/memes" data-route="memes" aria-label="Meme lab"><span>▧</span><small>Memes</small></a>
+        <a href="#/chat" data-route="chat" aria-label="Chat"><span>◉</span><small>Chat</small></a>
+        <a href="#/calls" data-route="calls" aria-label="Video adda"><span>▣</span><small>Calls</small></a>
+        <a href="#/arcade" data-route="arcade" aria-label="Game period"><span>✹</span><small>Games</small></a>
+      </nav>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog class="modal" id="profile-modal">
+    <form method="dialog" class="modal-card" id="profile-form">
+      <div class="modal-top"><span class="sticker sticker-yellow">✎</span><button class="modal-close" value="cancel" aria-label="Close">×</button></div>
+      <p class="eyebrow">THE ATTENDANCE REGISTER</p>
+      <h2>What do we call you?</h2>
+      <p class="muted">Nickname only. No roll number, no pressure. ✨</p>
+      <label class="field-label" for="nickname-input">YOUR NICKNAME</label>
+      <input class="text-input" id="nickname-input" maxlength="24" placeholder="e.g. Vinay, Chai.exe…" autocomplete="nickname" />
+      <div class="modal-actions"><button class="button button-dark" id="save-profile" value="save">Save my vibe <span>↗</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog class="modal" id="help-modal">
+    <div class="modal-card">
+      <div class="modal-top"><span class="sticker sticker-aqua">✳</span><button class="modal-close" id="close-help" aria-label="Close">×</button></div>
+      <p class="eyebrow">A QUICK NOTE</p>
+      <h2>Internet wali classroom.</h2>
+      <p class="muted">A little corner for your people. No grades, no awkward small talk required.</p>
+      <div class="help-list"><p><span>01</span> Chat and meme posts sync live when this app is running on its server.</p><p><span>02</span> Video calls need camera/mic permission and an HTTPS deployment (or localhost).</p><p><span>03</span> Be kind. Screenshot mat lena without asking. 💛</p></div>
+      <button class="button button-dark full-width" id="got-it-btn">Samajh gaya <span>✦</span></button>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="room-modal">
+    <form method="dialog" class="modal-card" id="room-form">
+      <div class="modal-top"><span class="sticker sticker-purple">＋</span><button class="modal-close" value="cancel" aria-label="Close">×</button></div>
+      <p class="eyebrow">MAKE A LITTLE CORNER</p>
+      <h2>New room, new lore.</h2>
+      <p class="muted">Give your room a name. Friends can join it from the chat page.</p>
+      <label class="field-label" for="room-name-input">ROOM NAME</label>
+      <input class="text-input" id="room-name-input" maxlength="28" placeholder="e.g. chai break" required />
+      <div class="modal-actions"><button class="button button-dark" id="create-room-btn" value="create">Create room <span>↗</span></button></div>
+    </form>
+  </dialog>
+
+  <script src="/live.js"></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
